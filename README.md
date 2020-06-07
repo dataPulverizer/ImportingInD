@@ -4,25 +4,25 @@ This brief article describes various ways of importing functions from libraries 
 
 Firstly there is the very simple approach that imports all the functions in a module:
 
-```
+```d
 import std.stdio;
 ```
 The above will import all the exportable items in `std.stdio` into the current script. If we only need two functions for instance `write` and `writeln` we can use the pattern:
 
-```
+```d
 import std.stdio: write, writeln;
 ```
 
 If we want to import items/functions using another alias we can use the pattern:
 
-```
+```d
 import core.stdc.math: sin = sinf, sin, sin = sinl;
 ```
 In the above example, we overload the `sin` alias with different functions for each floating point type.
 
 D also allows you to import code from a file as string that is parsed to legal code during compile time using a string `mixin`. Consider the code below:
 
-```
+```d
 //hello.d
 void hello()
 {
@@ -32,7 +32,7 @@ void hello()
 
 `hello.d` calls `io.writeln` not defined in the file. Attempting to compile the code on it's own will not work. But we can include it in a script that defines `io.writeln`:
 
-```
+```d
 static import io = std.stdio;
 mixin(import("hello.d"));
 
@@ -51,7 +51,7 @@ Note here that we must specify the folder where the script is located using the 
 
 By default the `import` keyword imports modules privately, meaning that the imported functions are only available to the module immediately importing the functions. Using `public import` will import the library/module to the importing module but will also import that library/module or set of items to all the scripts that reference the importing module. For example:
 
-```
+```d
 //myscript.d
 public import std.stdio: writeln;
 ```
@@ -60,7 +60,7 @@ This means that the function `writeln` will be available in `myscript.d` but als
 
 To stop a function in a module from being imported, mark it with the `private` keyword. For example:
 
-```
+```d
 // bye.d
 module bye; // This is how you declare a module name in D
 
@@ -71,7 +71,7 @@ private void goodbye()
 }
 ```
 
-```
+```d
 //import.d
 import bye;
 
