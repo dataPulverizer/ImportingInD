@@ -49,7 +49,7 @@ void main()
 
 Note here that we must specify the folder where the script is located using the `-J` flag in our compilation pattern `dmd import.d -J="."`. We also have a new import pattern where we can denote a whole library as another alias `io`, `static import` imports the library but we can only access the items in the library using the pattern `io`. To use the default library name we import using `static import std.stdio;` then we access library items for example `writeln` using `std.stdio.writeln`.
 
-By default the `import` keyword imports modules privately, meaning that the imported functions are only available to the module immediately importing the functions. Using `public import` will import the library/module to the importing module but will also make that library/module available to all the scripts that reference the importing module. Wow, that's a mouthful. By way of example consider the following:
+By default the `import` keyword imports modules privately, meaning that the imported functions are only available to the module immediately importing the functions. Using `public import` will import the library/module to the importing module but will also import that library/module or set of items to all the scripts that reference the importing module. For example:
 
 ```
 //myscript.d
