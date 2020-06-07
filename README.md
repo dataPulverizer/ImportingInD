@@ -1,4 +1,4 @@
-# Introduction to importing techniques in D
+# Introduction to importing modules/libaries/items in D
 
 This brief article describes various ways of importing functions from libraries and scripts in D.
 
