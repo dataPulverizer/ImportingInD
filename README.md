@@ -30,7 +30,7 @@ void hello()
 }
 ```
 
-`hello.d` calls `io.writeln` not defined in the file. Attempting to compile the code on it's own will not work. But we can include it in a script that defines `io.writeln` using a mixin:
+`hello.d` calls `io.writeln` not defined in the file. Attempting to compile the code on it's own will not work. But we can include it in a script that defines `io.writeln`:
 
 ```
 static import io = std.stdio;
