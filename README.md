@@ -56,9 +56,9 @@ By default the `import` keyword imports modules privately, meaning that the impo
 public import std.stdio: writeln;
 ```
 
-This means that the function writeln will be available in `myscript.d` but also in **all** scripts, modules, and libraries that import `myscript.d`.
+This means that the function `writeln` will be available in `myscript.d` but also in **all** scripts, modules, and libraries that import `myscript.d`.
 
-To stop a function in a module from being imported, mark it with private. For example:
+To stop a function in a module from being imported, mark it with the `private` keyword. For example:
 
 ```
 // bye.d
@@ -82,7 +82,7 @@ import bye;
 
 void main()
 {
-  //goodbye(); //will not compile
+  goodbye(); //will not compile!
 }
 ```
 
