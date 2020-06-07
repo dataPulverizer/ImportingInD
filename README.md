@@ -1,6 +1,8 @@
-# Importing techniques in D
+# Introduction to importing techniques in D
 
-In this brief article describes various ways of importing functions from libraries and scripts in D. First of all there is the very simple approach that imports all the functions in a module:
+This brief article describes various ways of importing functions from libraries and scripts in D.
+
+Firstly there is the very simple approach that imports all the functions in a module:
 
 ```
 import std.stdio;
@@ -16,7 +18,7 @@ If we want to import items/functions using another alias we can use the pattern:
 ```
 import core.stdc.math: sin = sinf, sin, sin = sinl;
 ```
-Note that in the above example, we overload the `sin` alias with different functions for each floating point type.
+In the above example, we overload the `sin` alias with different functions for each floating point type.
 
 D also allows you to import code from a file as string that is parsed to legal code during compile time using it's `mixin`s. Consider the code below:
 
