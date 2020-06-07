@@ -20,7 +20,7 @@ import core.stdc.math: sin = sinf, sin, sin = sinl;
 ```
 In the above example, we overload the `sin` alias with different functions for each floating point type.
 
-D also allows you to import code from a file as string that is parsed to legal code during compile time using it's `mixin`s. Consider the code below:
+D also allows you to import code from a file as string that is parsed to legal code during compile time using a string `mixin`. Consider the code below:
 
 ```
 //hello.d
