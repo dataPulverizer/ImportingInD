@@ -2,17 +2,15 @@
 
 ## Introduction
 
-Working with modules is a basic and fundamental part of programming, and provides the programmer with an valuable source of predefined functionality. The `import` directive in D provides an easy way of accessing these resources in D, and this article outlines the various ways of importing items and modules in D.
+Working with modules is a basic and fundamental part of programming, and provides the programmer with an valuable source of predefined functionality. The `import` directive in D provides an easy way of accessing these resources, and this article outlines the various ways of using it.
 
 ## Give me everything
 
-This approach imports everything in the module for use in the current scope:
+This approach imports everything in the `std.stdio` module for use in the current scope:
 
 ```d
 import std.stdio;
 ```
-
-The above will import all the exportable items in `std.stdio` into the current script. 
 
 ### Scope sensitivity
 
@@ -25,7 +23,7 @@ void main()
   import std.stdio;
 }
 ```
-because import of Phobos's I/O library occurs *after* calling the `writeln` function. The code below will also give a definition error because the import is only for the scope of `hello`:
+It occurs because import of Phobos's I/O library occurs *after* calling the `writeln` function. The code below will also give a definition error because the import is only for the scope of `hello`:
 
 ```d
 auto hello()
@@ -59,7 +57,7 @@ In the above example, the various functions overload `sin` with different signat
 
 ## Named module imports and pasting code from a file
 
-D also allows you to paste code from a file as string that is interpreted to legal code during compile time using a string `mixin`. This is different from importing code in the previous examples, because the file from which we import code is not a module but just an informal script containing D code.
+D also allows you to paste code from a file as string that is interpreted to legal code during compile time using a **string mixin**. This is different from importing code in the previous examples, because the file from which we import code is not a module but just an informal script containing D code.
 
 Consider the code below in the file `hello.d`:
 
@@ -89,7 +87,7 @@ void main()
 
 You can see that we assigned the whole `std.stdio` module to `io`, and used that as a prefix in our code to access its `writeln` function.
 
-*Note that we must specify the folder where the script is located using the `-J` flag in our compilation pattern `dmd import.d -J="."`.* 
+*Note that we must specify the folder where the script is located using the `-J` flag in our compilation pattern `dmd import.d -J="."` (in the DMD compiler).* 
 
 ## Static import
 
@@ -107,13 +105,13 @@ void main()
 
 ## Public import
 
-By default the `import` keyword imports modules privately, meaning that the imported functions are only available to the module immediately importing the functions. Using `public import` will import the module to the current scope but will also import that module or its subset to all the scripts that reference the importing module. In other words public import is as if the imported module or items where written in the scope that it is imported in. For example in `myscript.d`:
+By default, the `import` keyword imports modules privately, meaning that the imported functions are only available to the module immediately importing the functions. Using `public import` will import the module to the current scope but will also import that module or specified subset to all the scripts that reference the importing module. In other words public import is as if the imported module or items where written in the scope that it is imported in. For example in `script.d`:
 
 ```d
 public import std.stdio: writeln;
 ```
 
-This means that the function `writeln` will be available in `myscript.d` but also in **all** scripts, modules, and libraries that import `myscript.d`.
+This means that the function `writeln` will be available in `script.d` but also in **all** scripts, modules, and libraries that import `script.d`.
 
 ## Items marked `"private"` are not imported
 
@@ -136,7 +134,7 @@ import bye;
 
 /*
   To compile:
-  dmd import.d bye.d && ./import
+  dmd script.d bye.d && ./script
 */
 
 void main()
